@@ -134,6 +134,8 @@ class FerrosaMemory < Formula
 
   def install
     bin.install "ferrosa-memory-mcp"
+    # Native setup CLI (\`ferrosa-memory\`) — ships in releases after v0.16.x.
+    bin.install "ferrosa-memory" if File.exist?("ferrosa-memory")
     (etc/"ferrosa").install "config/ferrosa-memory.example.toml" if File.exist?("config/ferrosa-memory.example.toml")
   end
 
@@ -157,8 +159,9 @@ class FerrosaMemory < Formula
 
   test do
     # ferrosa-memory-mcp is a stdio MCP server with no --version flag; just
-    # assert the binary landed and is runnable.
+    # assert it landed. The native setup CLI has a clean --help when present.
     assert_predicate bin/"ferrosa-memory-mcp", :executable?
+    assert_match "setup", shell_output("#{bin}/ferrosa-memory --help") if (bin/"ferrosa-memory").exist?
   end
 end
 RB
