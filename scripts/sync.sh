@@ -32,8 +32,8 @@ sha_for() { # repo tag asset -> sha256
 }
 
 write_ferrosa() {
-  local repo="ferrosadb/ferrosa" tag ver base
-  tag=$(latest_stable "$repo"); ver="${tag#v}"
+  local repo="ferrosadb/ferrosa" tag base
+  tag=$(latest_stable "$repo")
   base="https://github.com/${repo}/releases/download/${tag}"
   local mac_arm lin_arm lin_x86
   mac_arm=$(sha_for "$repo" "$tag" "ferrosa-${tag}-aarch64-apple-darwin.tar.gz")
@@ -47,7 +47,6 @@ write_ferrosa() {
 class Ferrosa < Formula
   desc "Cassandra-compatible database engine with S3-backed storage"
   homepage "https://ferrosadb.com"
-  version "${ver}"
   license "Apache-2.0"
 
   on_macos do
@@ -88,7 +87,9 @@ class Ferrosa < Formula
   end
 
   test do
-    assert_match "ferrosa", shell_output("#{bin}/ferrosa --version")
+    # The main \`ferrosa\` binary boots the server on any args; \`ferrosa-ctl\`
+    # is the CLI with a clean --version.
+    assert_match version.to_s, shell_output("#{bin}/ferrosa-ctl --version")
   end
 end
 RB
@@ -96,8 +97,8 @@ RB
 }
 
 write_ferrosa_memory() {
-  local repo="ferrosadb/ferrosa-memory" tag ver base
-  tag=$(latest_stable "$repo"); ver="${tag#v}"
+  local repo="ferrosadb/ferrosa-memory" tag base
+  tag=$(latest_stable "$repo")
   base="https://github.com/${repo}/releases/download/${tag}"
   local mac_arm lin_arm lin_x86
   mac_arm=$(sha_for "$repo" "$tag" "ferrosa-memory-${tag}-aarch64-apple-darwin.tar.gz")
@@ -111,7 +112,6 @@ write_ferrosa_memory() {
 class FerrosaMemory < Formula
   desc "Memory/knowledge-graph MCP server backed by Ferrosa"
   homepage "https://ferrosadb.com"
-  version "${ver}"
   license "Apache-2.0"
 
   on_macos do
@@ -156,7 +156,9 @@ class FerrosaMemory < Formula
   end
 
   test do
-    assert_match "ferrosa-memory", shell_output("#{bin}/ferrosa-memory-mcp --version")
+    # ferrosa-memory-mcp is a stdio MCP server with no --version flag; just
+    # assert the binary landed and is runnable.
+    assert_predicate bin/"ferrosa-memory-mcp", :executable?
   end
 end
 RB

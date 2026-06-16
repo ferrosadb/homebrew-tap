@@ -5,7 +5,6 @@
 class FerrosaMemory < Formula
   desc "Memory/knowledge-graph MCP server backed by Ferrosa"
   homepage "https://ferrosadb.com"
-  version "0.16.0"
   license "Apache-2.0"
 
   on_macos do
@@ -50,6 +49,8 @@ class FerrosaMemory < Formula
   end
 
   test do
-    assert_match "ferrosa-memory", shell_output("#{bin}/ferrosa-memory-mcp --version")
+    # ferrosa-memory-mcp is a stdio MCP server with no --version flag; just
+    # assert the binary landed and is runnable.
+    assert_predicate bin/"ferrosa-memory-mcp", :executable?
   end
 end

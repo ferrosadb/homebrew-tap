@@ -5,7 +5,6 @@
 class Ferrosa < Formula
   desc "Cassandra-compatible database engine with S3-backed storage"
   homepage "https://ferrosadb.com"
-  version "0.15.0"
   license "Apache-2.0"
 
   on_macos do
@@ -46,6 +45,8 @@ class Ferrosa < Formula
   end
 
   test do
-    assert_match "ferrosa", shell_output("#{bin}/ferrosa --version")
+    # The main `ferrosa` binary boots the server on any args; `ferrosa-ctl`
+    # is the CLI with a clean --version.
+    assert_match version.to_s, shell_output("#{bin}/ferrosa-ctl --version")
   end
 end
