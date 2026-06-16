@@ -1,0 +1,42 @@
+name: Sync formulae to latest stable
+
+# Keeps Formula/*.rb pointed at the latest maintainer-promoted (stable) release
+# of each project. Triggers:
+#   - schedule:        hourly safety-net
+#   - workflow_dispatch: manual
+#   - repository_dispatch (type: release-promoted): fire from a product repo's
+#     "promote to stable" workflow for an immediate bump
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch: {}
+  repository_dispatch:
+    types: [release-promoted]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-formulae
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate formulae from latest stable releases
+        run: bash scripts/sync.sh
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- Formula; then
+            echo "formulae already current; nothing to do"
+            exit 0
+          fi
+          git config user.name  "ferrosa-bot"
+          git config user.email "bot@ferrosadb.com"
+          git add Formula
+          git commit -m "chore: sync formulae to latest stable"
+          git push
