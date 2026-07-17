@@ -8,6 +8,7 @@ Homebrew formulae for the [Ferrosa](https://ferrosadb.com) platform.
 brew tap ferrosadb/tap
 brew install ferrosa            # Cassandra-compatible DB engine
 brew install ferrosa-memory     # Memory MCP server (needs ferrosa running)
+brew install forge              # Developer tooling CLI (frg) + MCP server
 ```
 
 Or in one shot, without a separate tap step:
@@ -15,6 +16,7 @@ Or in one shot, without a separate tap step:
 ```bash
 brew install ferrosadb/tap/ferrosa
 brew install ferrosadb/tap/ferrosa-memory
+brew install ferrosadb/tap/forge
 ```
 
 Upgrade with the usual `brew upgrade`.
@@ -22,7 +24,7 @@ Upgrade with the usual `brew upgrade`.
 ## Supported platforms
 
 - macOS Apple Silicon (`arm64`)
-- Linux `x86_64` and `aarch64`
+- Linux `x86_64` and `aarch64` (forge: `x86_64` only)
 
 Intel macOS is not supported — build from source if you need it.
 
