@@ -9,19 +9,19 @@ class FerrosaMemory < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/ferrosadb/ferrosa-memory/releases/download/v0.24.0/ferrosa-memory-v0.24.0-aarch64-apple-darwin.tar.gz"
-      sha256 "d0d76132e804c23c4f9d671a2e30370d35ea14cdff8c04734dabc3982fe3e3f7"
+      url "https://github.com/ferrosadb/ferrosa-memory/releases/download/v0.25.0/ferrosa-memory-v0.25.0-aarch64-apple-darwin.tar.gz"
+      sha256 "4ec7ad5038745dc14a4be4b40eb9d81d2ba69aa3b84d3db8c74c789385eebad0"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/ferrosadb/ferrosa-memory/releases/download/v0.24.0/ferrosa-memory-v0.24.0-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "570cff74a087362e7507401d2b7a22e34144c3dc372179ff69b3dccfd75f065b"
+      url "https://github.com/ferrosadb/ferrosa-memory/releases/download/v0.25.0/ferrosa-memory-v0.25.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "a1f7f1c32dbc09dc160a06a51ccce0cf0ee38a5b9b5110a397cfc35c635e5c29"
     end
     on_intel do
-      url "https://github.com/ferrosadb/ferrosa-memory/releases/download/v0.24.0/ferrosa-memory-v0.24.0-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "d9616cc6c7d039ed232916e84a74592e11ed833855a45e980980bd87437d8b05"
+      url "https://github.com/ferrosadb/ferrosa-memory/releases/download/v0.25.0/ferrosa-memory-v0.25.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "242f994e0e95b680f79ca50f7ce9a6b113e8febd60c44dda3a16a14c5db7e800"
     end
   end
 
