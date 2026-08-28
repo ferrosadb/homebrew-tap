@@ -9,19 +9,19 @@ class Ferrosa < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/ferrosadb/ferrosa/releases/download/v0.20.1/ferrosa-v0.20.1-aarch64-apple-darwin.tar.gz"
-      sha256 "be509d34534a0b8685b2b27db7f195e48a74a613bc906df167959ab37d9db856"
+      url "https://github.com/ferrosadb/ferrosa/releases/download/v0.21.1/ferrosa-v0.21.1-aarch64-apple-darwin.tar.gz"
+      sha256 "946316d77a89a9fa9d002616eda548b929e66d6de26d77356651178fabef63ef"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/ferrosadb/ferrosa/releases/download/v0.20.1/ferrosa-v0.20.1-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "853cf9b9a3c4918713510aa41f2b4119036eb8e2e31fba65db455bf3830f93e8"
+      url "https://github.com/ferrosadb/ferrosa/releases/download/v0.21.1/ferrosa-v0.21.1-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "36405cb1a50d6cf29b7d315ae494ae0cecf082dcf2b8255d26c69f520d0e9c9f"
     end
     on_intel do
-      url "https://github.com/ferrosadb/ferrosa/releases/download/v0.20.1/ferrosa-v0.20.1-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "6c775c189be1173aa6dad546436e4f3fe563903e05a50c3cad68d7b9661cc480"
+      url "https://github.com/ferrosadb/ferrosa/releases/download/v0.21.1/ferrosa-v0.21.1-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "f3e3ed4f987e56b148a3eea16803e62f085c85762aab2b71f17ad6b6aab373f7"
     end
   end
 
