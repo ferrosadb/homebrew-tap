@@ -5,20 +5,20 @@
 class Forge < Formula
   desc "Developer tooling CLI (frg) and MCP server for the Ferrosa suite"
   homepage "https://github.com/ferrosadb/forge"
-  version "2026.10.10.0603"
+  version "2026.10.11.0600"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/ferrosadb/forge/releases/download/v2026.10.10.0603/frg-macos-aarch64.tar.gz"
-      sha256 "4f72446e38bacbda95c1072542130b061f702e3844c3fc79da52680a1d811f3e"
+      url "https://github.com/ferrosadb/forge/releases/download/v2026.10.11.0600/frg-macos-aarch64.tar.gz"
+      sha256 "b808cfab5549578677615ea70ff1ef67440aa469035ff02318334a9f603a61c0"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/ferrosadb/forge/releases/download/v2026.10.10.0603/frg-linux-x86_64.tar.gz"
-      sha256 "541c8091ffb6282f526a9ea97bf8df3634200f305b2d1b899c3cadf4342d8d29"
+      url "https://github.com/ferrosadb/forge/releases/download/v2026.10.11.0600/frg-linux-x86_64.tar.gz"
+      sha256 "f1f33e8126f01a0f78816f37296b7b28dcaee3d3d4d9c3ba8590817dbfafb546"
     end
   end
 
