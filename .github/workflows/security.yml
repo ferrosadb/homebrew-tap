@@ -4,6 +4,17 @@ name: Security
 # There is no dependency advisory job: this repository has no dependencies,
 # only formulae that scripts/sync.sh generates from the product repos'
 # releases, and those are audited where they are built.
+#
+# Egress is AUDITED, not blocked. On GitHub-hosted runners harden-runner's
+# block mode works only if its agent takes over DNS, and that is not reliable:
+# in ferrosa run 40017365622, systemd-resolved still queried Azure DNS
+# (168.63.129.16) directly after the agent restarted it. The agent therefore
+# never learned github.com's address. It dropped git's fetch AND the runner's
+# own connections to GitHub (Runner.Worker, resolved before the agent started),
+# so checkout failed and the job hung until its timeout. allowed-endpoints
+# takes host names, not address ranges, so no allow-list can prevent this.
+# These jobs hold no secret and only a read-only token, so audit loses little.
+# Every connection is still recorded on the run's StepSecurity insights page.
 
 on:
   push:
@@ -30,12 +41,7 @@ jobs:
       - name: Harden the runner
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: block
-          allowed-endpoints: >
-            github.com:443
-            api.github.com:443
-            objects.githubusercontent.com:443
-            release-assets.githubusercontent.com:443
+          egress-policy: audit
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           # gitleaks needs history to scan commits, not just the tree.
